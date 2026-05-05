@@ -8,7 +8,7 @@ const Projects = () => {
   return (
     <motion.div
       id='projects'
-      className='py-20 bg-dark-200 scroll-mt-24'  // ✅ IMPORTANT FIX
+      className='py-20 bg-dark-200 scroll-mt-24'  
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 1 }}

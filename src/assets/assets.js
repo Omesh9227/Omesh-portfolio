@@ -1,8 +1,8 @@
-import { FaLightbulb, FaPaintBrush, FaCode, FaReact, FaServer, FaMobileAlt, FaTools, FaNodeJs, FaStripe, FaVuejs, FaFire, FaDatabase, FaCloud, FaRobot } from 'react-icons/fa';
+import { FaLightbulb, FaPaintBrush, FaCode, FaReact, FaServer, FaMobileAlt, FaTools, FaJava, FaNodeJs, FaStripe, FaVuejs, FaFire, FaDatabase, FaCloud, FaRobot } from 'react-icons/fa';
 
 import profileImg from '../assets/profile.avif';
 import projectImg1 from '../assets/project1.avif';
-import projectImg2 from '../assets/project2.avif';
+import projectImg2 from '../assets/project7.avif';
 import projectImg3 from '../assets/project3.avif';
 import projectImg4 from '../assets/project4.avif';
 import projectImg5 from '../assets/project5.avif';
@@ -94,15 +94,15 @@ export const projects = [
     demo: "https://dsa-checklist-liard.vercel.app/",
     code: "https://github.com/Omesh9227/dsa-checklist",
   },
-  // {
-  //   title: "Task Management App",
-  //   description: "A productivity application with drag-and-drop functionality and real-time updates.",
-  //   image: projectImg2,
-  //   tech: ["Vue.js", "Firebase", "Tailwind CSS", "WebSockets"],
-  //   icons: [FaVuejs, FaFire, FaCloud , FaDatabase],
-  //   demo: "#",
-  //   code: "#",
-  // },
+  {
+    title: "Grocery Shopping Optimizer",
+    description: "Developed an AI-powered microservices-based application to optimize grocery shopping by automating inventory tracking, generating personalized recipes using available ingredients, creating smart shopping lists, and performing real-time price comparison across multiple platforms using web scraping.",
+    image: projectImg2,
+    tech: ["React.js", "Spring Boot", "Spring Cloud", "PostgreSQL", "MongoDB", "Docker", "Apache Kafka"],
+    icons: [FaReact, FaJava, FaDatabase],
+    demo: "#",
+    code: "https://github.com/Omesh9227/grocery-shopping-optimizer",
+  }
   // {
   //   title: "Fitness Tracker",
   //   description: "A mobile app for tracking workouts, nutrition, and health metrics.",
