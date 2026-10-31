@@ -13,8 +13,8 @@ const GroceryDiagram = () => (
     viewBox="0 0 400 334"
     role="img"
     aria-labelledby="grocery-diagram-title"
-    className="block h-auto w-full"
-    style={{ fontFamily: 'var(--font-sans)' }}
+    className="block h-full max-h-full w-auto max-w-full"
+    style={{ fontFamily: "inherit" }}
   >
     <title id="grocery-diagram-title">
       Architecture: a React client calls a Spring Cloud API gateway, which routes to four Spring Boot
@@ -35,27 +35,27 @@ const GroceryDiagram = () => (
     </g>
 
     {/* client */}
-    <rect x="135" y="12" width="130" height="34" rx="8" fill="var(--surface)" stroke="var(--rule)" />
-    <text x="200" y="34" textAnchor="middle" fontSize="13" fill="var(--ink)">React client</text>
+    <rect x="135" y="12" width="130" height="34" rx="8" fill="var(--panel)" stroke="var(--line-2)" />
+    <text x="200" y="34" textAnchor="middle" fontSize="13" fill="var(--text)">React client</text>
 
     {/* gateway */}
-    <rect x="110" y="76" width="180" height="34" rx="8" fill="var(--surface)" stroke="var(--accent)" strokeWidth="1.5" />
-    <text x="200" y="98" textAnchor="middle" fontSize="13" fontWeight="600" fill="var(--ink)">Spring Cloud Gateway</text>
+    <rect x="110" y="76" width="180" height="34" rx="8" fill="var(--panel)" stroke="var(--green)" strokeWidth="1.5" />
+    <text x="200" y="98" textAnchor="middle" fontSize="13" fontWeight="600" fill="var(--text)">Spring Cloud Gateway</text>
 
     {/* services group */}
-    <rect x="10" y="136" width="380" height="132" rx="12" fill="var(--surface-2)" stroke="var(--rule)" />
+    <rect x="10" y="136" width="380" height="132" rx="12" fill="var(--panel-2)" stroke="var(--line-2)" />
     <text x="22" y="152" fontSize="11" fill="var(--muted)">Spring Boot microservices</text>
     {services.map((s) => (
       <g key={s.name}>
-        <rect x={s.x} y={s.y} width="172" height="44" rx="8" fill="var(--surface)" stroke="var(--rule)" />
-        <text x={s.x + 12} y={s.y + 19} fontSize="13" fontWeight="600" fill="var(--ink)">{s.name}</text>
+        <rect x={s.x} y={s.y} width="172" height="44" rx="8" fill="var(--panel)" stroke="var(--line-2)" />
+        <text x={s.x + 12} y={s.y + 19} fontSize="13" fontWeight="600" fill="var(--text)">{s.name}</text>
         <text x={s.x + 12} y={s.y + 35} fontSize="11.5" fill="var(--muted)">{s.sub}</text>
       </g>
     ))}
 
     {/* kafka */}
-    <rect x="10" y="294" width="380" height="32" rx="8" fill="var(--accent-soft)" stroke="var(--accent)" strokeOpacity="0.45" />
-    <text x="200" y="315" textAnchor="middle" fontSize="13" fontWeight="600" fill="var(--accent)">Apache Kafka event bus</text>
+    <rect x="10" y="294" width="380" height="32" rx="8" fill="rgb(63 185 80 / 0.12)" stroke="var(--green)" strokeOpacity="0.45" />
+    <text x="200" y="315" textAnchor="middle" fontSize="13" fontWeight="600" fill="var(--green)">Apache Kafka event bus</text>
   </svg>
 )
 

@@ -2,7 +2,7 @@
 
 Personal portfolio site for Omesh Mandavi, software engineer at Publicis Sapient.
 
-Built with React 19, Vite and Tailwind CSS v4. Single page, light and dark themes, self-hosted fonts, no animation library.
+Built with React 19, Vite and Tailwind CSS v4. Single page, dark terminal-style theme (inspired by the DevPro template), self-hosted Inter and Fira Code fonts, no animation library.
 
 ## Run locally
 
@@ -25,25 +25,26 @@ All text, links and lists live in **`src/data/portfolio.js`** — experience, pr
 
 ```
 src/
-  data/portfolio.js          all site content
+  data/portfolio.js        all site content
   components/
-    Section.jsx              shared section layout (heading column + content)
-    Navbar.jsx               sticky header, scroll-spy, theme toggle, mobile menu
-    Hero.jsx, TraceCard.jsx  intro and the animated request-trace visual
-    About.jsx
-    Experience.jsx
-    Projects.jsx, GroceryDiagram.jsx
-    CompetitiveProgramming.jsx
-    Skills.jsx
+    ui.jsx                 shared pieces: Container, SectionHeading, Band, WindowChrome, Chips
+    Navbar.jsx             fixed header, scroll-spy, mobile menu
+    Hero.jsx               intro, typing roles, laptop terminal, code window, sticky notes
+    TechMarquee.jsx        scrolling tech-stack strip
+    About.jsx              profile card, Who I Am, My Toolbox
+    Experience.jsx         work timeline and community roles
+    Projects.jsx           project cards (GroceryDiagram.jsx draws the architecture)
+    Cta.jsx                "Ready to Collaborate?" band
+    Coding.jsx             LeetCode / CodeChef cards and contest log
     Certifications.jsx
-    Contact.jsx              EmailJS-powered contact form
-    Footer.jsx
-  index.css                  design tokens (light/dark) and base styles
+    Contact.jsx            EmailJS contact form and contact details
+    Footer.jsx             footer and back-to-top button
+  index.css                colour tokens and shared styles
 ```
 
 ## Theming
 
-Colours are CSS variables defined in `src/index.css` and exposed to Tailwind as `bg-bg`, `text-ink`, `text-muted`, `border-rule`, `text-accent` and so on. The site follows the system theme until the visitor uses the toggle; the choice is remembered.
+Colours are CSS variables at the top of `src/index.css` (`--bg`, `--panel`, `--green`, …), exposed to Tailwind as `bg-bg`, `bg-panel`, `text-green` and so on. Change `--green` to re-colour the whole accent.
 
 ## Contact form
 

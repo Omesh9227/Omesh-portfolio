@@ -213,8 +213,7 @@ export const nav = [
   { id: 'about', label: 'About' },
   { id: 'experience', label: 'Experience' },
   { id: 'projects', label: 'Projects' },
-  { id: 'competitive', label: 'Coding' },
-  { id: 'skills', label: 'Skills' },
+  { id: 'coding', label: 'Coding' },
   { id: 'certifications', label: 'Certifications' },
   { id: 'contact', label: 'Contact' },
 ]

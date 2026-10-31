@@ -1,14 +1,37 @@
 import { useRef, useState } from 'react'
 import emailjs from '@emailjs/browser'
-import { FiCheckCircle, FiAlertCircle } from 'react-icons/fi'
+import {
+  FaCircleCheck,
+  FaCircleExclamation,
+  FaEnvelope,
+  FaGithub,
+  FaInstagram,
+  FaLinkedin,
+  FaLocationDot,
+  FaPaperPlane,
+  FaPhone,
+  FaXTwitter,
+  FaYoutube,
+} from 'react-icons/fa6'
+import { SiCodechef, SiLeetcode } from 'react-icons/si'
 import { person, socials } from '../data/portfolio'
-import Section from './Section'
+import { Band, Container, SectionHeading } from './ui'
 
 // EmailJS public identifiers (safe to ship in client code)
 const EMAILJS = {
   service: 'service_hkdfebf',
   template: 'template_slns86l',
   publicKey: 'XIB8LJfjbCcrcSlm2',
+}
+
+const socialIcons = {
+  GitHub: FaGithub,
+  LinkedIn: FaLinkedin,
+  LeetCode: SiLeetcode,
+  CodeChef: SiCodechef,
+  X: FaXTwitter,
+  Instagram: FaInstagram,
+  YouTube: FaYoutube,
 }
 
 const Contact = () => {
@@ -28,96 +51,135 @@ const Contact = () => {
     }
   }
 
+  const info = [
+    [FaEnvelope, 'Email', person.email, `mailto:${person.email}`],
+    [FaPhone, 'Phone', person.phone, `tel:${person.phoneHref}`],
+    [FaLocationDot, 'Location', person.location, null],
+  ]
+
   return (
-    <Section id="contact" title="Contact" note="Questions, opportunities or a chat about backend engineering.">
-      <div className="grid gap-12 md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] md:gap-14">
-        <div>
-          <p className="text-[0.9rem] text-muted">Email</p>
-          <a
-            href={`mailto:${person.email}`}
-            className="link mt-1 block text-[clamp(1.15rem,3.2vw,1.5rem)] font-semibold tracking-[-0.01em] break-all"
-          >
-            {person.email}
-          </a>
+    <Band id="contact" labelledBy="contact-title">
+      <Container>
+        <SectionHeading
+          id="contact-title"
+          lead="Get In"
+          accent="Touch"
+          sub="Have a question or an opportunity? Send a message and I’ll reply by email."
+        />
 
-          <dl className="mt-8 grid gap-4">
-            <div>
-              <dt className="text-[0.9rem] text-muted">Phone</dt>
-              <dd>
-                <a href={`tel:${person.phoneHref}`} className="link">
-                  {person.phone}
-                </a>
-              </dd>
-            </div>
-            <div>
-              <dt className="text-[0.9rem] text-muted">Location</dt>
-              <dd className="text-ink">{person.location}</dd>
-            </div>
-          </dl>
+        <div className="card grid gap-10 p-6 sm:p-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:gap-14 lg:p-10">
+          {/* Form */}
+          <div>
+            <h3 className="mb-6 flex items-center gap-2.5 font-code text-lg font-bold text-white">
+              <FaEnvelope aria-hidden className="text-green" /> Send a Message
+            </h3>
+            <form ref={form} onSubmit={onSubmit} className="grid gap-5">
+              <div className="grid gap-5 sm:grid-cols-2">
+                <div className="grid gap-1.5">
+                  <label htmlFor="contact-name" className="text-sm font-medium text-text">
+                    Name
+                  </label>
+                  <input id="contact-name" name="name" type="text" required autoComplete="name" placeholder="Your name" className="field" />
+                </div>
+                <div className="grid gap-1.5">
+                  <label htmlFor="contact-email" className="text-sm font-medium text-text">
+                    Email
+                  </label>
+                  <input
+                    id="contact-email"
+                    name="email"
+                    type="email"
+                    required
+                    autoComplete="email"
+                    placeholder="you@company.com"
+                    className="field"
+                  />
+                </div>
+              </div>
+              <div className="grid gap-1.5">
+                <label htmlFor="contact-message" className="text-sm font-medium text-text">
+                  Message
+                </label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  required
+                  rows={6}
+                  placeholder="What would you like to talk about?"
+                  className="field resize-y"
+                />
+              </div>
 
-          <p className="mt-8 text-[0.9rem] text-muted">Elsewhere</p>
-          <ul className="mt-2 grid grid-cols-2 gap-x-6 gap-y-2 text-[0.97rem]">
-            {socials.map((s) => (
-              <li key={s.label}>
-                <a href={s.href} target="_blank" rel="noopener noreferrer" className="link">
-                  {s.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
+              <button type="submit" disabled={status === 'sending'} className="btn btn-green w-full disabled:opacity-60">
+                <FaPaperPlane aria-hidden /> {status === 'sending' ? 'Sending…' : 'Send Message'}
+              </button>
 
-        <form ref={form} onSubmit={onSubmit} className="grid gap-5" noValidate={false}>
-          <div className="grid gap-5 sm:grid-cols-2">
-            <label className="grid gap-1.5">
-              <span className="text-[0.92rem] font-medium text-ink">Name</span>
-              <input name="name" type="text" required autoComplete="name" className="field" />
-            </label>
-            <label className="grid gap-1.5">
-              <span className="text-[0.92rem] font-medium text-ink">Email</span>
-              <input
-                name="email"
-                type="email"
-                required
-                autoComplete="email"
-                placeholder="you@company.com"
-                className="field"
-              />
-            </label>
-          </div>
-          <label className="grid gap-1.5">
-            <span className="text-[0.92rem] font-medium text-ink">Message</span>
-            <textarea name="message" required rows={6} className="field resize-y" />
-          </label>
-
-          <div className="flex flex-wrap items-center gap-4">
-            <button type="submit" disabled={status === 'sending'} className="btn btn-primary disabled:opacity-60">
-              {status === 'sending' ? 'Sending…' : 'Send message'}
-            </button>
-
-            <p role="status" aria-live="polite" className="text-[0.92rem]">
-              {status === 'sent' && (
-                <span className="inline-flex items-center gap-1.5 text-ok">
-                  <FiCheckCircle aria-hidden /> Message sent. I’ll reply by email.
-                </span>
-              )}
-              {status === 'error' && (
-                <span className="inline-flex items-start gap-1.5 text-muted">
-                  <FiAlertCircle aria-hidden className="mt-1 shrink-0 text-ink" />
-                  <span>
-                    Couldn’t send the message. Try again, or email{' '}
-                    <a href={`mailto:${person.email}`} className="link">
-                      {person.email}
-                    </a>
-                    .
+              <p role="status" aria-live="polite" className="min-h-[1.5rem] text-sm">
+                {status === 'sent' && (
+                  <span className="flex items-center gap-2 text-green">
+                    <FaCircleCheck aria-hidden /> Message sent. I’ll reply by email.
                   </span>
-                </span>
-              )}
-            </p>
+                )}
+                {status === 'error' && (
+                  <span className="flex items-start gap-2 text-muted">
+                    <FaCircleExclamation aria-hidden className="mt-1 shrink-0 text-red" />
+                    <span>
+                      Couldn’t send the message. Try again, or email me at{' '}
+                      <span className="text-text select-all">{person.email}</span>.
+                    </span>
+                  </span>
+                )}
+              </p>
+            </form>
           </div>
-        </form>
-      </div>
-    </Section>
+
+          {/* Info */}
+          <div className="lg:border-l lg:border-line lg:pl-14">
+            <h3 className="mb-6 font-code text-lg font-bold text-white">Contact Info</h3>
+            <ul className="space-y-5">
+              {info.map(([Icon, label, value, href]) => (
+                <li key={label} className="flex items-start gap-4">
+                  <span className="grid size-10 shrink-0 place-items-center rounded-xl border border-line bg-panel-2 text-green">
+                    <Icon aria-hidden />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-xs text-faint">{label}</p>
+                    {href ? (
+                      <a href={href} className="break-all text-text hover:text-green">
+                        {value}
+                      </a>
+                    ) : (
+                      <p className="text-text">{value}</p>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ul>
+
+            <h3 className="mt-10 mb-4 font-code text-lg font-bold text-white">Connect with Me</h3>
+            <ul className="flex flex-wrap gap-2.5">
+              {socials.map((s) => {
+                const Icon = socialIcons[s.label]
+                return (
+                  <li key={s.label}>
+                    <a
+                      href={s.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={s.label}
+                      title={s.label}
+                      className="icon-btn"
+                    >
+                      <Icon aria-hidden />
+                    </a>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+        </div>
+      </Container>
+    </Band>
   )
 }
 

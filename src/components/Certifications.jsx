@@ -1,35 +1,47 @@
-import { FiArrowUpRight } from 'react-icons/fi'
+import { FaArrowUpRightFromSquare, FaAws, FaCertificate } from 'react-icons/fa6'
 import { certifications } from '../data/portfolio'
-import Section from './Section'
+import { Band, Container, SectionHeading } from './ui'
 
 const Certifications = () => (
-  <Section id="certifications" title="Certifications">
-    <ul className="-mt-4">
-      {certifications.map((c) => (
-        <li key={c.title} className="border-t border-rule first:border-t-0">
-          <a
-            href={c.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group grid grid-cols-[minmax(0,1fr)_auto] items-start gap-x-6 gap-y-1 py-4 sm:grid-cols-[minmax(0,1fr)_3.5rem_1.25rem]"
-          >
-            <span>
-              <span className="font-medium text-ink transition-colors group-hover:text-accent">{c.title}</span>
-              <span className="mt-0.5 block text-[0.92rem] text-muted">
-                {c.issuer}. {c.detail}
-              </span>
-            </span>
-            <span className="pt-0.5 text-right text-[0.92rem] text-muted">{c.year}</span>
-            <FiArrowUpRight
-              aria-hidden
-              className="mt-1 hidden text-faint transition-colors group-hover:text-accent sm:block"
-            />
-            <span className="sr-only">(opens credential in a new tab)</span>
-          </a>
-        </li>
-      ))}
-    </ul>
-  </Section>
+  <Band id="certifications" tone="deep" labelledBy="certifications-title">
+    <Container>
+      <SectionHeading
+        id="certifications-title"
+        lead="My"
+        accent="Certifications"
+        sub="Courses and credentials, with links to verify each one."
+      />
+
+      <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {certifications.map((c) => {
+          const Icon = c.issuer === 'Amazon Web Services' ? FaAws : FaCertificate
+          return (
+            <li key={c.title}>
+              <a
+                href={c.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card group flex h-full flex-col p-5 transition-colors hover:border-green/50"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <span className="grid size-11 shrink-0 place-items-center rounded-xl border border-line bg-panel-2 text-xl text-green">
+                    <Icon aria-hidden />
+                  </span>
+                  <span className="chip font-code text-faint">{c.year}</span>
+                </div>
+                <p className="mt-4 font-semibold text-text group-hover:text-green">{c.title}</p>
+                <p className="text-sm text-green/90">{c.issuer}</p>
+                <p className="mt-2 text-sm text-muted">{c.detail}</p>
+                <span className="mt-auto flex items-center gap-1.5 pt-4 text-xs text-faint group-hover:text-green">
+                  View credential <FaArrowUpRightFromSquare aria-hidden className="text-[0.65rem]" />
+                </span>
+              </a>
+            </li>
+          )
+        })}
+      </ul>
+    </Container>
+  </Band>
 )
 
 export default Certifications

@@ -1,20 +1,22 @@
 import Hero from '../components/Hero'
+import TechMarquee from '../components/TechMarquee'
 import About from '../components/About'
 import Experience from '../components/Experience'
+import Cta from '../components/Cta'
 import Projects from '../components/Projects'
-import CompetitiveProgramming from '../components/CompetitiveProgramming'
-import Skills from '../components/Skills'
+import Coding from '../components/Coding'
 import Certifications from '../components/Certifications'
 import Contact from '../components/Contact'
 
 const Home = () => (
   <>
     <Hero />
+    <TechMarquee />
     <About />
     <Experience />
     <Projects />
-    <CompetitiveProgramming />
-    <Skills />
+    <Cta />
+    <Coding />
     <Certifications />
     <Contact />
   </>
