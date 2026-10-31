@@ -8,6 +8,12 @@ export const readTheme = () => {
 
 export const applyTheme = (value) => {
   const root = document.documentElement
+  // Fade colours instead of snapping (skipped for reduced motion)
+  if (!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
+    root.classList.add('theme-switching')
+    clearTimeout(applyTheme.t)
+    applyTheme.t = setTimeout(() => root.classList.remove('theme-switching'), 350)
+  }
   if (value === 'system') root.removeAttribute('data-theme')
   else root.setAttribute('data-theme', value)
   try {

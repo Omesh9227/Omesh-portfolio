@@ -242,8 +242,139 @@ h1, h2, h3 {
   to { transform: translateX(-50%); }
 }
 
+/* ---------- Effects ----------
+   One orchestrated hero entrance, gentle scroll reveals, and hover feedback.
+   Everything rests in its visible state; reduced-motion visitors get no movement. */
+
+:root { --ease-out: cubic-bezier(0.22, 1, 0.36, 1); }
+
+/* Hero entrance: each piece fades up after its --d delay */
+.enter {
+  animation: enter 700ms var(--ease-out) both;
+  animation-delay: var(--d, 0ms);
+}
+@keyframes enter {
+  from { opacity: 0; transform: translateY(14px); }
+}
+
+/* Scroll reveal. Only hidden once JS is running (html.js), so the page
+   still shows everything if scripts fail. Stagger with --d. */
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 650ms var(--ease-out), transform 650ms var(--ease-out);
+  transition-delay: var(--d, 0ms);
+}
+html.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Section heading underline draws in when its heading is revealed */
+.heading-bar {
+  transform-origin: center;
+  transition: transform 700ms var(--ease-out) 200ms;
+}
+html.js [data-reveal]:not(.is-visible) .heading-bar { transform: scaleX(0); }
+
+/* Card lift + green glow. Hover-capable devices only. */
+.lift {
+  transition: transform 300ms var(--ease-out), border-color 300ms ease, box-shadow 300ms ease;
+}
+@media (hover: hover) {
+  .lift:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in oklab, var(--green) 45%, var(--line));
+    box-shadow: 0 18px 40px -22px color-mix(in oklab, var(--green) 55%, transparent);
+  }
+}
+
+/* Soft light that follows the cursor across a card (--mx/--my set in JS) */
+.spotlight {
+  position: relative;
+  isolation: isolate;
+}
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(
+    420px circle at var(--mx, 50%) var(--my, 50%),
+    color-mix(in oklab, var(--green) 11%, transparent),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 300ms ease;
+  pointer-events: none;
+}
+@media (hover: hover) {
+  .spotlight:hover::before { opacity: 1; }
+}
+
+/* Small nudges */
+.nudge-x { transition: transform 200ms var(--ease-out); }
+.group:hover .nudge-x { transform: translateX(4px); }
+.nudge-up { transition: transform 200ms var(--ease-out); }
+.group:hover .nudge-up { transform: translate(2px, -2px); }
+
+.icon-btn { transition: color 150ms ease, border-color 150ms ease, transform 200ms var(--ease-out); }
+@media (hover: hover) {
+  .icon-btn:hover { transform: translateY(-2px); }
+  .chip { transition: border-color 150ms ease, color 150ms ease; }
+  .chip:hover { border-color: color-mix(in oklab, var(--green) 50%, var(--line)); }
+}
+
+/* Button shine: a soft highlight sweeps across the primary button on hover */
+.btn-green { position: relative; overflow: hidden; isolation: isolate; }
+.btn-green::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(110deg, transparent 30%, rgb(255 255 255 / 0.28) 50%, transparent 70%);
+  transform: translateX(-120%);
+}
+@media (hover: hover) {
+  .btn-green:hover::after { transform: translateX(120%); transition: transform 700ms var(--ease-out); }
+}
+
+/* Thin reading-progress bar along the top edge */
+.scroll-progress {
+  position: fixed;
+  inset: 0 0 auto;
+  height: 2px;
+  z-index: 60;
+  background: linear-gradient(90deg, var(--green), var(--blue));
+  transform-origin: left;
+  transform: scaleX(0);
+  pointer-events: none;
+}
+@supports (animation-timeline: scroll()) {
+  .scroll-progress {
+    animation: progress linear both;
+    animation-timeline: scroll(root);
+  }
+}
+@keyframes progress { to { transform: scaleX(1); } }
+
+/* Smooth colour change while switching themes (class added for ~350ms) */
+html.theme-switching,
+html.theme-switching *,
+html.theme-switching *::before {
+  transition: background-color 300ms ease, border-color 300ms ease, color 300ms ease, fill 300ms ease !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .caret { animation: none; }
   .marquee-track { animation: none; }
+  .enter { animation: none; }
+  html.js [data-reveal] { opacity: 1; transform: none; transition: none; }
+  html.js [data-reveal]:not(.is-visible) .heading-bar { transform: none; }
+  .lift, .lift:hover, .icon-btn:hover { transform: none; }
+  .nudge-x, .nudge-up, .group:hover .nudge-x, .group:hover .nudge-up { transform: none; }
+  .btn-green::after { display: none; }
+  .scroll-progress { display: none; }
 }

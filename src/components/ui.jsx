@@ -6,11 +6,11 @@ export const Container = ({ className = '', children }) => (
 
 // Centered section title: first word white, second word green, short green underline.
 export const SectionHeading = ({ id, lead, accent, sub }) => (
-  <div className="mb-12 text-center sm:mb-14">
+  <div data-reveal className="mb-12 text-center sm:mb-14">
     <h2 id={id} className="font-code text-3xl font-bold tracking-tight text-text sm:text-4xl">
       {lead} <span className="text-green">{accent}</span>
     </h2>
-    <span aria-hidden className="mx-auto mt-3 block h-1 w-16 rounded-full bg-green" />
+    <span aria-hidden className="heading-bar mx-auto mt-3 block h-1 w-16 rounded-full bg-green" />
     {sub && <p className="mx-auto mt-5 max-w-2xl text-muted">{sub}</p>}
   </div>
 )

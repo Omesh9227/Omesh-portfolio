@@ -67,7 +67,7 @@ const Contact = () => {
           sub="Have a question or an opportunity? Send a message and I’ll reply by email."
         />
 
-        <div className="card grid gap-10 p-6 sm:p-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:gap-14 lg:p-10">
+        <div data-reveal className="card spotlight grid gap-10 p-6 sm:p-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:gap-14 lg:p-10">
           {/* Form */}
           <div>
             <h3 className="mb-6 flex items-center gap-2.5 font-code text-lg font-bold text-text">
@@ -110,8 +110,8 @@ const Contact = () => {
                 />
               </div>
 
-              <button type="submit" disabled={status === 'sending'} className="btn btn-green w-full disabled:opacity-60">
-                <FaPaperPlane aria-hidden /> {status === 'sending' ? 'Sending…' : 'Send Message'}
+              <button type="submit" disabled={status === 'sending'} className="group btn btn-green w-full disabled:opacity-60">
+                <FaPaperPlane aria-hidden className="nudge-up" /> {status === 'sending' ? 'Sending…' : 'Send Message'}
               </button>
 
               <p role="status" aria-live="polite" className="min-h-[1.5rem] text-sm">
@@ -138,8 +138,8 @@ const Contact = () => {
             <h3 className="mb-6 font-code text-lg font-bold text-text">Contact Info</h3>
             <ul className="space-y-5">
               {info.map(([Icon, label, value, href]) => (
-                <li key={label} className="flex items-start gap-4">
-                  <span className="grid size-10 shrink-0 place-items-center rounded-xl border border-line bg-panel-2 text-green">
+                <li key={label} className="group flex items-start gap-4">
+                  <span className="grid size-10 shrink-0 place-items-center rounded-xl border border-line bg-panel-2 text-green transition-colors duration-200 group-hover:border-green/60">
                     <Icon aria-hidden />
                   </span>
                   <div className="min-w-0">

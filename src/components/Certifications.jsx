@@ -13,18 +13,18 @@ const Certifications = () => (
       />
 
       <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {certifications.map((c) => {
+        {certifications.map((c, i) => {
           const Icon = c.issuer === 'Amazon Web Services' ? FaAws : FaCertificate
           return (
-            <li key={c.title}>
+            <li key={c.title} data-reveal style={{ "--d": `${(i % 4) * 80}ms` }}>
               <a
                 href={c.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="card group flex h-full flex-col p-5 transition-colors hover:border-green/50"
+                className="card lift spotlight group flex h-full flex-col p-5"
               >
                 <div className="flex items-start justify-between gap-3">
-                  <span className="grid size-11 shrink-0 place-items-center rounded-xl border border-line bg-panel-2 text-xl text-green">
+                  <span className="grid size-11 shrink-0 place-items-center rounded-xl border border-line bg-panel-2 text-xl text-green transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110">
                     <Icon aria-hidden />
                   </span>
                   <span className="chip font-code text-faint">{c.year}</span>
@@ -33,7 +33,7 @@ const Certifications = () => (
                 <p className="text-sm text-green/90">{c.issuer}</p>
                 <p className="mt-2 text-sm text-muted">{c.detail}</p>
                 <span className="mt-auto flex items-center gap-1.5 pt-4 text-xs text-faint group-hover:text-green">
-                  View credential <FaArrowUpRightFromSquare aria-hidden className="text-[0.65rem]" />
+                  View credential <FaArrowUpRightFromSquare aria-hidden className="nudge-up text-[0.65rem]" />
                 </span>
               </a>
             </li>

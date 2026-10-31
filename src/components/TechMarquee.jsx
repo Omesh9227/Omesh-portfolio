@@ -42,7 +42,7 @@ const tech = [
 const Row = ({ hidden }) => (
   <ul aria-hidden={hidden || undefined} className="flex shrink-0 items-center gap-10 pr-10">
     {tech.map(([name, Icon, color]) => (
-      <li key={name} className="flex items-center gap-2.5 text-[0.92rem] whitespace-nowrap text-text/90">
+      <li key={name} className="flex items-center gap-2.5 text-[0.92rem] whitespace-nowrap text-text/75 transition-colors hover:text-text">
         <Icon aria-hidden className="text-lg" style={{ color }} />
         {name}
       </li>

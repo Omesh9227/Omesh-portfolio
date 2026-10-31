@@ -12,6 +12,7 @@ const Cta = () => (
       style={{ background: 'var(--purple)' }}
     />
     <Container className="relative text-center">
+      <div data-reveal>
       <h2 id="cta-title" className="font-code text-3xl font-bold text-text sm:text-5xl">
         Ready to <span className="text-green">Collaborate?</span>
       </h2>
@@ -23,7 +24,7 @@ const Cta = () => (
       <ol className="mx-auto mt-10 flex max-w-xl flex-wrap items-center justify-center gap-x-3 gap-y-3 font-code text-sm sm:text-base">
         {loop.map((w, i) => (
           <li key={w} className="flex items-center gap-3">
-            <span className="rounded-lg border border-line-2 bg-panel px-4 py-2 text-text">
+            <span className="inline-block rounded-lg border border-line-2 bg-panel px-4 py-2 text-text transition-[border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-green/60">
               <span className="text-green">{i + 1}.</span> {w}
             </span>
             {i < loop.length - 1 && (
@@ -38,9 +39,10 @@ const Cta = () => (
         </li>
       </ol>
 
-      <a href="#contact" className="btn btn-green mt-10">
-        <FaPaperPlane aria-hidden /> Get in Touch
+      <a href="#contact" className="group btn btn-green mt-10">
+        <FaPaperPlane aria-hidden className="nudge-up" /> Get in Touch
       </a>
+      </div>
     </Container>
   </section>
 )

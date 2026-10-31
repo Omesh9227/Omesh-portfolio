@@ -1,4 +1,5 @@
 import {
+  FaArrowRight,
   FaArrowUpRightFromSquare,
   FaBasketShopping,
   FaCartShopping,
@@ -78,7 +79,7 @@ const Title = ({ p }) => {
 
 // Wide card for the flagship project: diagram beside the write-up and roadmap.
 const FeaturedProject = ({ p }) => (
-  <li className="card overflow-hidden transition-colors hover:border-green/50 md:col-span-2">
+  <li data-reveal className="card lift spotlight overflow-hidden md:col-span-2">
     <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
       <Media project={p} />
       <div className="flex flex-col p-6 sm:p-7">
@@ -139,11 +140,11 @@ const Projects = () => (
       />
 
       <ul className="grid gap-6 md:grid-cols-2">
-        {projects.map((p) =>
+        {projects.map((p, i) =>
           p.featured ? (
             <FeaturedProject key={p.title} p={p} />
           ) : (
-            <li key={p.title} className="card flex flex-col overflow-hidden transition-colors hover:border-green/50">
+            <li key={p.title} data-reveal style={{ "--d": `${(i % 2) * 110}ms` }} className="card lift spotlight flex flex-col overflow-hidden">
               <Media project={p} />
               <div className="flex flex-1 flex-col p-6">
                 <Title p={p} />
@@ -160,8 +161,8 @@ const Projects = () => (
       </ul>
 
       <div className="mt-12 text-center">
-        <a href={githubRepos} target="_blank" rel="noopener noreferrer" className="btn btn-outline">
-          <FaGithub aria-hidden /> View All Repositories
+        <a href={githubRepos} target="_blank" rel="noopener noreferrer" className="group btn btn-outline">
+          <FaGithub aria-hidden /> View All Repositories <FaArrowRight aria-hidden className="nudge-x text-sm" />
         </a>
       </div>
     </Container>

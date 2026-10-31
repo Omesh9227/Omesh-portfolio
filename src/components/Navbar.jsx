@@ -54,15 +54,15 @@ const Navbar = () => {
                 <a
                   href={`#${id}`}
                   aria-current={active === id ? 'true' : undefined}
-                  className={`relative py-1 transition-colors hover:text-green ${
+                  className={`group relative py-1 transition-colors hover:text-green ${
                     active === id ? 'text-green' : 'text-text/85'
                   }`}
                 >
                   {label}
                   <span
                     aria-hidden
-                    className={`absolute inset-x-0 -bottom-0.5 h-0.5 rounded-full bg-green transition-transform duration-200 ${
-                      active === id ? 'scale-x-100' : 'scale-x-0'
+                    className={`absolute inset-x-0 -bottom-0.5 h-0.5 origin-left rounded-full bg-green transition-transform duration-300 ${
+                      active === id ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                     }`}
                   />
                 </a>

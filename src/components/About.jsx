@@ -30,7 +30,7 @@ const About = () => (
       />
 
       {/* Profile card */}
-      <article className="card overflow-hidden">
+      <article data-reveal className="card spotlight overflow-hidden">
         <div className="flex items-center justify-between gap-4 border-b border-line px-5 py-3.5 sm:px-6">
           <a href={github.href} target="_blank" rel="noopener noreferrer" className="flex min-w-0 items-center gap-2.5 text-sm text-text hover:text-green">
             <FaGithub aria-hidden className="shrink-0 text-lg" />
@@ -43,14 +43,14 @@ const About = () => (
         </div>
 
         <div className="grid items-center gap-8 p-6 sm:p-8 md:grid-cols-[13rem_minmax(0,1fr)] md:gap-10">
-          <div className="mx-auto aspect-square w-44 overflow-hidden rounded-2xl border-2 border-green/60 md:w-full">
+          <div className="group mx-auto aspect-square w-44 overflow-hidden rounded-2xl border-2 border-green/60 transition-[border-color,box-shadow] duration-300 hover:border-green hover:shadow-[0_0_0_6px_color-mix(in_oklab,var(--green)_15%,transparent)] md:w-full">
             <img
               src={person.photo}
               alt={`Portrait of ${person.name}`}
               width="912"
               height="1169"
               loading="lazy"
-              className="h-full w-full origin-[50%_22%] scale-[2.1] object-cover"
+              className="h-full w-full origin-[50%_22%] scale-[2.1] object-cover transition-transform duration-700 group-hover:scale-[2.2]"
             />
           </div>
 
@@ -63,7 +63,7 @@ const About = () => (
 
             <dl className="mt-6 grid grid-cols-3 gap-3 sm:max-w-md">
               {stats.map(([v, k]) => (
-                <div key={k} className="flex flex-col-reverse justify-end rounded-xl border border-line bg-panel-2 px-3 py-3 text-center">
+                <div key={k} className="flex flex-col-reverse justify-end rounded-xl border border-line bg-panel-2 px-3 py-3 text-center transition-colors duration-200 hover:border-green/50">
                   <dt className="mt-0.5 text-[0.72rem] leading-tight text-muted">{k}</dt>
                   <dd className="font-code text-xl font-bold text-green sm:text-2xl">{v}</dd>
                 </div>
@@ -84,7 +84,7 @@ const About = () => (
 
       <div className="mt-6 grid gap-6 lg:grid-cols-2">
         {/* Who I am */}
-        <article className="card p-6 sm:p-7">
+        <article data-reveal className="card lift spotlight p-6 sm:p-7">
           <CardTitle icon={FaUser}>Who I Am</CardTitle>
           <p className="text-muted">{person.bio[1]}</p>
 
@@ -108,7 +108,7 @@ const About = () => (
         </article>
 
         {/* Toolbox */}
-        <article className="card p-6 sm:p-7">
+        <article data-reveal className="card lift spotlight p-6 sm:p-7" style={{ "--d": "120ms" }}>
           <CardTitle icon={FaToolbox}>My Toolbox</CardTitle>
           <dl className="space-y-4">
             {skills.map(({ group, items }) => (

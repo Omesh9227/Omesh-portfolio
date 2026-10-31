@@ -82,8 +82,8 @@ const Terminal = () => (
           ---------------------
         </p>
         <dl>
-          {info.map(([k, v]) => (
-            <div key={k} className="flex gap-2">
+          {info.map(([k, v], i) => (
+            <div key={k} className="enter flex gap-2" style={{ "--d": `${800 + i * 70}ms` }}>
               <dt className="shrink-0 text-yellow">{k}:</dt>
               <dd className="truncate text-text">{v}</dd>
             </div>
@@ -166,7 +166,7 @@ const CodeWindow = () => (
 
 const Note = ({ color, label, text, className }) => (
   <div
-    className={`w-32 rounded-sm p-3 font-code text-[0.68rem] leading-snug text-[#1f2328] shadow-lg shadow-[var(--shadow)] ${className}`}
+    className={`w-32 rounded-sm p-3 font-code transition-transform duration-300 hover:-translate-y-1 hover:rotate-2 text-[0.68rem] leading-snug text-[#1f2328] shadow-lg shadow-[var(--shadow)] ${className}`}
     style={{ background: color }}
   >
     <p className="font-bold">{label}</p>
@@ -193,27 +193,29 @@ const Hero = () => {
       />
 
       <Container className="relative text-center">
-        <p className="text-lg font-semibold text-green sm:text-2xl">Hello World! I’m</p>
-        <h1 className="mt-3 font-code text-[2.6rem] leading-tight font-bold tracking-tight text-text sm:text-6xl lg:text-7xl">
+        <p className="enter text-lg font-semibold text-green sm:text-2xl">Hello World! I’m</p>
+        <h1 className="enter mt-3 font-code text-[2.6rem] leading-tight font-bold tracking-tight text-text sm:text-6xl lg:text-7xl" style={{ "--d": "90ms" }}>
           {person.name}
         </h1>
-        <p className="mt-4 font-code text-lg text-muted sm:text-2xl" aria-live="off">
+        <p className="enter mt-4 font-code text-lg text-muted sm:text-2xl" aria-live="off" style={{ "--d": "180ms" }}>
           <span className="text-green">&gt;</span> <span className="text-text">{typed}</span>
           <span className="caret ml-1" />
         </p>
-        <p className="mx-auto mt-6 max-w-2xl text-pretty text-muted sm:text-lg">{person.intro}</p>
+        <p className="enter mx-auto mt-6 max-w-2xl text-pretty text-muted sm:text-lg" style={{ "--d": "270ms" }}>
+          {person.intro}
+        </p>
 
-        <div className="mt-9 flex flex-wrap justify-center gap-4">
-          <a href="#projects" className="btn btn-green">
-            View Projects <FaArrowRight aria-hidden />
+        <div className="enter mt-9 flex flex-wrap justify-center gap-4" style={{ "--d": "360ms" }}>
+          <a href="#projects" className="group btn btn-green">
+            View Projects <FaArrowRight aria-hidden className="nudge-x" />
           </a>
-          <a href="#contact" className="btn btn-outline">
-            <FaEnvelope aria-hidden /> Contact Me
+          <a href="#contact" className="group btn btn-outline">
+            <FaEnvelope aria-hidden className="nudge-up" /> Contact Me
           </a>
         </div>
 
         {/* Laptop with terminal. The laptop and code window stay dark in both themes. */}
-        <div className="relative mx-auto mt-14 max-w-3xl sm:mt-20">
+        <div className="enter relative mx-auto mt-14 max-w-3xl sm:mt-20" style={{ "--d": "480ms" }}>
           <div className="force-dark">
             <div className="rounded-t-2xl border-[5px] border-b-0 border-[#1c2128] bg-[#1c2128] shadow-2xl shadow-[var(--shadow)] sm:border-[10px] sm:border-b-0">
               <Terminal />
@@ -229,14 +231,14 @@ const Hero = () => {
           />
 
           {/* In the flow below xl, overlapping the laptop on wide screens */}
-          <div className="force-dark relative mx-auto mt-10 w-full max-w-md xl:absolute xl:-right-32 xl:-bottom-14 xl:mt-0 xl:w-[23rem] xl:max-w-none">
+          <div className="enter force-dark relative mx-auto mt-10 w-full max-w-md xl:absolute xl:-right-32 xl:-bottom-14 xl:mt-0 xl:w-[23rem] xl:max-w-none" style={{ "--d": "900ms" }}>
             <CodeWindow />
           </div>
 
-          <div className="absolute top-10 -left-36 hidden -rotate-6 xl:block">
+          <div className="enter absolute top-10 -left-36 hidden -rotate-6 xl:block" style={{ "--d": "1100ms" }}>
             <Note color="var(--note-yellow)" label="TODO:" text="System design deep dive" />
           </div>
-          <div className="absolute top-44 -left-28 hidden rotate-3 xl:block">
+          <div className="enter absolute top-44 -left-28 hidden rotate-3 xl:block" style={{ "--d": "1250ms" }}>
             <Note color="var(--note-blue)" label="IDEA:" text="GenAI + microservices" />
           </div>
         </div>

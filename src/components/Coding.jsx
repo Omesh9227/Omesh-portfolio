@@ -19,10 +19,10 @@ const Coding = () => (
       />
 
       <div className="grid gap-6 md:grid-cols-2">
-        {codingProfiles.map((p) => {
+        {codingProfiles.map((p, i) => {
           const { Icon, color } = brand[p.platform]
           return (
-            <article key={p.platform} className="card p-6 sm:p-7">
+            <article key={p.platform} data-reveal style={{ "--d": `${i * 110}ms` }} className="card lift spotlight p-6 sm:p-7">
               <div className="flex items-center justify-between gap-4">
                 <h3 className="flex items-center gap-3 font-code text-lg font-bold text-text">
                   <Icon aria-hidden className="text-2xl" style={{ color }} />
@@ -57,11 +57,11 @@ const Coding = () => (
         })}
       </div>
 
-      <div className="mt-6 overflow-hidden rounded-xl border border-line-2 bg-panel">
+      <div data-reveal className="mt-6 overflow-hidden rounded-xl border border-line-2 bg-panel">
         <WindowChrome title="contest_results.log" />
         <ul className="divide-y divide-line font-code text-[0.85rem]">
           {contestResults.map((r) => (
-            <li key={r.event} className="flex flex-col gap-1 px-5 py-3.5 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+            <li key={r.event} className="flex flex-col gap-1 px-5 py-3.5 transition-colors hover:bg-panel-2 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
               <span className="flex items-start gap-3 text-text">
                 <FaTrophy aria-hidden className="mt-1 shrink-0 text-xs text-yellow" />
                 {r.event}

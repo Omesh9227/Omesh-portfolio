@@ -9,7 +9,7 @@ const Experience = () => (
 
       <ol className="relative mx-auto max-w-4xl space-y-8 before:absolute before:top-2 before:bottom-2 before:left-[1.1rem] before:w-px before:bg-line-2 sm:before:left-[1.35rem]">
         {experience.map((job) => (
-          <li key={job.company} className="relative pl-12 sm:pl-16">
+          <li key={job.company} data-reveal className="relative pl-12 sm:pl-16">
             <span
               aria-hidden
               className="absolute top-5 left-0 grid size-9 place-items-center rounded-full border border-green/60 bg-panel text-green sm:size-11"
@@ -17,7 +17,7 @@ const Experience = () => (
               <FaBriefcase className="text-sm sm:text-base" />
             </span>
 
-            <article className="card p-6 sm:p-7">
+            <article className="card lift spotlight p-6 sm:p-7">
               <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
                 <div>
                   <h3 className="font-code text-xl font-bold text-text">{job.company}</h3>
@@ -33,9 +33,13 @@ const Experience = () => (
                       <span
                         aria-hidden
                         className={`absolute top-[0.55rem] -left-[1.32rem] size-2.5 rounded-full ${
-                          i === 0 ? 'bg-green shadow-[0_0_0_4px_rgb(63_185_80/0.2)]' : 'border border-faint bg-bg-deep'
+                          i === 0 ? 'bg-green' : 'border border-faint bg-bg-deep'
                         }`}
-                      />
+                      >
+                        {i === 0 && (
+                          <span className="absolute inset-0 animate-ping rounded-full bg-green opacity-50 motion-reduce:animate-none" />
+                        )}
+                      </span>
                       <span className={i === 0 ? 'font-semibold text-green' : 'text-text/80'}>{r.title}</span>
                       <span className="ml-2 font-code text-xs whitespace-nowrap text-faint">{r.period}</span>
                     </li>
@@ -64,8 +68,8 @@ const Experience = () => (
         <FaUsers aria-hidden className="text-green" /> Leadership &amp; Community
       </h3>
       <ul className="grid gap-5 md:grid-cols-3">
-        {community.map((c) => (
-          <li key={c.org} className="card flex flex-col p-5">
+        {community.map((c, i) => (
+          <li key={c.org} data-reveal style={{ "--d": `${i * 90}ms` }} className="card lift spotlight flex flex-col p-5">
             <div className="flex items-start justify-between gap-3">
               <p className="font-semibold text-text">{c.title}</p>
               {c.link && (
