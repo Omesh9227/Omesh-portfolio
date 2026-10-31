@@ -1,38 +1,35 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import { certifications } from '../assets/assets'
-import CertificationCard from './CertificationCard'
+import { FiArrowUpRight } from 'react-icons/fi'
+import { certifications } from '../data/portfolio'
+import Section from './Section'
 
-const Certifications = () => {
-  return (
-    <motion.div
-      id="certifications"
-      className="py-20 bg-dark-200"
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1 }}
-    >
-      <div className="container mx-auto px-6">
-
-        {/* Heading */}
-        <h2 className="text-3xl font-bold text-center mb-4 text-white">
-          My <span className="text-purple">Certifications</span>
-        </h2>
-
-        <p className="text-gray-400 text-center mb-16">
-          Certifications that validate my technical expertise
-        </p>
-
-        {/* ✅ GRID LIKE ACHIEVEMENTS */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {certifications.map((cert, index) => (
-            <CertificationCard key={index} cert={cert} />
-          ))}
-        </div>
-
-      </div>
-    </motion.div>
-  )
-}
+const Certifications = () => (
+  <Section id="certifications" title="Certifications">
+    <ul className="-mt-4">
+      {certifications.map((c) => (
+        <li key={c.title} className="border-t border-rule first:border-t-0">
+          <a
+            href={c.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group grid grid-cols-[minmax(0,1fr)_auto] items-start gap-x-6 gap-y-1 py-4 sm:grid-cols-[minmax(0,1fr)_3.5rem_1.25rem]"
+          >
+            <span>
+              <span className="font-medium text-ink transition-colors group-hover:text-accent">{c.title}</span>
+              <span className="mt-0.5 block text-[0.92rem] text-muted">
+                {c.issuer}. {c.detail}
+              </span>
+            </span>
+            <span className="pt-0.5 text-right text-[0.92rem] text-muted">{c.year}</span>
+            <FiArrowUpRight
+              aria-hidden
+              className="mt-1 hidden text-faint transition-colors group-hover:text-accent sm:block"
+            />
+            <span className="sr-only">(opens credential in a new tab)</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </Section>
+)
 
 export default Certifications

@@ -1,109 +1,51 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import { assets, aboutInfo } from '../assets/assets'
+import { education, person } from '../data/portfolio'
+import Section from './Section'
 
-const About = () => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-      viewport={{ once: true }}
-      id='about'
-      className='py-20 bg-dark-200'
-    >
-      <div className='container mx-auto px-6'>
+const About = () => (
+  <Section id="about" title="About">
+    <div className="grid gap-10 md:grid-cols-[minmax(0,15rem)_minmax(0,1fr)] md:gap-12">
+      <div className="aspect-[4/5] w-full max-w-[15rem] overflow-hidden rounded-2xl border border-rule bg-surface-2">
+        <img
+          src={person.photo}
+          alt={`Portrait of ${person.name}`}
+          width="912"
+          height="1169"
+          loading="lazy"
+          className="h-full w-full origin-[50%_24%] scale-[1.75] object-cover"
+        />
+      </div>
 
-        {/* Heading */}
-        <h2 className='text-3xl font-bold text-center mb-4'>
-          About <span className='text-purple'>Me</span>
-        </h2>
+      <div className="max-w-[62ch]">
+        {person.bio.map((p) => (
+          <p key={p.slice(0, 24)} className="mb-5 text-ink/90 last:mb-0">
+            {p}
+          </p>
+        ))}
 
-        <p className='text-gray-400 text-center max-w-2xl mx-auto mb-16'>
-          Get to know about my background and passion
-        </p>
-
-        {/* image + content */}
-        <div className='flex flex-col md:flex-row items-center gap-12'>
-
-          {/* IMAGE */}
-          <div className='md:w-1/2 rounded-2xl overflow-hidden'>
-            <motion.img
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, ease: 'easeOut' }}
-              viewport={{ once: false, amount: 0.2 }}
-              className='w-full h-full object-cover'
-              src={assets.profileImg}
-              alt="Profile"
-            />
+        <div className="mt-10 grid gap-8 border-t border-rule pt-8 sm:grid-cols-2">
+          <div>
+            <h3 className="text-[0.9rem] font-medium text-muted">Education</h3>
+            <p className="mt-2 font-semibold text-ink">{education.school}</p>
+            <p className="text-ink/90">{education.degree}</p>
+            <p className="mt-0.5 text-[0.95rem] text-muted">{education.years}</p>
           </div>
-
-          {/* TEXT */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: 'easeOut' }}
-            viewport={{ once: false, amount: 0.2 }}
-            className='md:w-1/2'
-          >
-            <div className='rounded-2xl p-8'>
-
-              <h3 className='text-2xl font-semibold mb-6'>My Journey</h3>
-
-              {/* 🎓 EDUCATION HIGHLIGHT */}
-              <div className="mb-8 p-6 rounded-2xl bg-gradient-to-r from-purple/20 to-blue/20 border border-purple/30 shadow-lg hover:shadow-purple/30 transition duration-300">
-                
-                <h3 className="text-xl font-semibold text-white mb-2">
-                  🎓 B.Tech – Computer Science Engineering
-                </h3>
-
-                <p className="text-purple text-lg font-medium">
-                  National Institute of Technology, Raipur
-                </p>
-
-                <p className="text-gray-400 text-sm mt-1">
-                  2021 – 2025
-                </p>
-
-              </div>
-
-              {/* TEXT */}
-                <p className='text-gray-300 mb-6'>
-                I’m a Software Developer with a strong foundation in Data Structures & Algorithms and experience building scalable web applications. I’ve worked with React, Spring Boot, REST APIs, PostgreSQL, and Docker, and completed training at Publicis Sapient. I enjoy solving complex problems and currently focus on backend development, system design, and Generative AI.
-                </p>
-
-                <p className='text-gray-300 mb-12'>
-                I’m focused on building production-ready full-stack applications and continuously improving my problem-solving skills to prepare for software engineering roles.
-                </p>
-
-              {/* CARDS */}
-              <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-                {aboutInfo.map((data, index) => (
-                  <div
-                    key={index}
-                    className='bg-dark-300 rounded-2xl p-6 transition-transform duration-300 hover:-translate-y-2 cursor-pointer hover:shadow-purple/20'
-                  >
-                    <div className='text-purple text-4xl mb-4'>
-                      <data.icon />
-                    </div>
-                    <h3 className='text-xl font-semibold mb-3 text-white'>
-                      {data.title}
-                    </h3>
-                    <p className='text-gray-400'>
-                      {data.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-
-            </div>
-          </motion.div>
-
+          <div>
+            <h3 className="text-[0.9rem] font-medium text-muted">Exploring now</h3>
+            <ul className="mt-2 flex flex-wrap gap-2">
+              {person.focus.map((f) => (
+                <li
+                  key={f}
+                  className="rounded-full border border-rule px-3 py-1 text-[0.9rem] text-ink"
+                >
+                  {f}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
-    </motion.div>
-  )
-}
+    </div>
+  </Section>
+)
 
 export default About

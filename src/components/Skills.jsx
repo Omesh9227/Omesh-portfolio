@@ -1,65 +1,28 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import { skills } from '../assets/assets'
+import { skills } from '../data/portfolio'
+import Section from './Section'
 
-const Skills = () => {
-  return (
-    <motion.div
-      initial={{opacity:0, y:50}}
-      whileInView={{opacity:1, y:0}}
-      transition={{duration: 1, ease: 'easeOut'}}
-      viewport={{once: false, amount:0.2}}
-      id='skills'
-      className='py-20 bg-dark-100'
-    >
-      <div className='container mx-auto px-6'>
-        <h2 className='text-3xl font-bold text-center mb-4'>
-            My
-            <span className='text-purple'>Skills</span>
-        </h2>
-        <p className='text-gray-400 text-center max-w-2xl mx-auto
-        mb-16'>Technologies I work with to bring ideas to life</p>
-
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8
-        max-w-5xl mx-auto'>
-            {
-                skills.map((skill, index) => (
-                    <div
-                    key={index}
-                    className='bg-dark-300 rounded-2xl p-6 hover:-translate-y-2 transition duration-300 cursor-pointer'
-                    >
-                    {/* Icon and Title Container */}
-                    <div className='flex items-center mb-4'>
-                        <skill.icon className='w-12 h-12 text-purple mr-6' />
-                        <h3 className='text-xl font-semibold text-white'>
-                        {skill.title}
-                        </h3>
-                    </div>
-
-                    {/* Description */}
-                    <p className='text-gray-400 mb-4'>
-                        {skill.description}
-                    </p>
-
-                    {/* Tags/Technologies */}
-                    <div className='flex flex-wrap gap-2'>
-                        {skill.tags.map((tech) => (
-                        <span
-                            key={tech}
-                            className='px-3 py-1 bg-dark-400 rounded-full text-sm text-gray-300'
-                        >
-                            {tech}
-                        </span>
-                        ))}
-                    </div>
-                    </div>
-                ))
-            }
+const Skills = () => (
+  <Section id="skills" title="Skills">
+    <dl>
+      {skills.map(({ group, items }) => (
+        <div
+          key={group}
+          className="grid gap-x-8 gap-y-3 border-t border-rule py-5 first:border-t-0 first:pt-0 sm:grid-cols-[9.5rem_minmax(0,1fr)]"
+        >
+          <dt className="pt-1 font-medium text-ink">{group}</dt>
+          <dd>
+            <ul className="flex flex-wrap gap-1.5">
+              {items.map((s) => (
+                <li key={s} className="tag">
+                  {s}
+                </li>
+              ))}
+            </ul>
+          </dd>
         </div>
-    </div>
-
-    </motion.div>
-  )
-}
+      ))}
+    </dl>
+  </Section>
+)
 
 export default Skills

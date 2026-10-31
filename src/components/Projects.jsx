@@ -1,48 +1,80 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import { projects } from '../assets/assets'
-import ProjectCard from './ProjectCard'
-import { FaArrowRight } from 'react-icons/fa'
+import { FiArrowUpRight, FiGithub } from 'react-icons/fi'
+import { githubRepos, projects } from '../data/portfolio'
+import GroceryDiagram from './GroceryDiagram'
+import Section from './Section'
 
-const Projects = () => {
+const Media = ({ project }) => {
+  if (project.diagram === 'grocery') {
+    return (
+      <figure className="rounded-2xl border border-rule bg-surface p-4 sm:p-5">
+        <GroceryDiagram />
+        <figcaption className="mt-3 text-[0.8rem] text-muted">System overview</figcaption>
+      </figure>
+    )
+  }
   return (
-    <motion.div
-      id='projects'
-      className='py-20 bg-dark-200 scroll-mt-24'  
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1 }}
+    <a
+      href={project.demo || project.code}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group block overflow-hidden rounded-2xl border border-rule bg-surface"
+      aria-label={`Open ${project.title}`}
     >
-      <div className='container mx-auto px-6'>
-
-        <h2 className='text-3xl font-bold text-center mb-4 text-white'>
-          My <span className='text-purple'>Projects</span>
-        </h2>
-
-        <p className='text-gray-400 text-center max-w-2xl mx-auto mb-16'>
-          A selection of my recent work
-        </p>
-
-        {/* Grid */}
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto'>
-          {projects.map((project, index) => (
-            <ProjectCard key={index} {...project} />
-          ))}
-        </div>
-
-        {/* Button */}
-        <div className='text-center mt-12'>
-          <a
-            href="#"
-            className='inline-flex items-center px-6 py-3 border border-purple rounded-lg text-white hover:bg-purple/20'
-          >
-            View More Projects <FaArrowRight className='ml-2' />
-          </a>
-        </div>
-
-      </div>
-    </motion.div>
+      <img
+        src={project.image}
+        alt={project.imageAlt}
+        loading="lazy"
+        className="aspect-[16/10] w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+      />
+    </a>
   )
 }
+
+const Projects = () => (
+  <Section id="projects" title="Projects" note="Selected personal work. More on GitHub.">
+    <ul className="space-y-16">
+      {projects.map((p) => (
+        <li key={p.title} className="grid items-start gap-8 md:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] md:gap-10">
+          <Media project={p} />
+
+          <div>
+            <h3 className="text-[1.45rem] font-semibold tracking-[-0.015em] text-ink">{p.title}</h3>
+            <p className="mt-3 text-ink/90">{p.summary}</p>
+            <p className="mt-3 text-[0.95rem] text-muted">{p.details}</p>
+
+            <ul className="mt-5 flex flex-wrap gap-1.5" aria-label="Technologies">
+              {p.tech.map((t) => (
+                <li key={t} className="tag">
+                  {t}
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              {p.demo && (
+                <a href={p.demo} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+                  Live demo <FiArrowUpRight aria-hidden />
+                </a>
+              )}
+              {p.code && (
+                <a href={p.code} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
+                  <FiGithub aria-hidden /> Source code
+                </a>
+              )}
+            </div>
+          </div>
+        </li>
+      ))}
+    </ul>
+
+    <p className="mt-14 border-t border-rule pt-6 text-[0.95rem] text-muted">
+      See every repository on{' '}
+      <a href={githubRepos} target="_blank" rel="noopener noreferrer" className="link">
+        github.com/Omesh9227
+      </a>
+      .
+    </p>
+  </Section>
+)
 
 export default Projects

@@ -2,11 +2,35 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/src/assets/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>omesh_portfolio</title>
+    <title>Omesh Mandavi — Software Engineer</title>
+    <meta
+      name="description"
+      content="Omesh Mandavi is a software engineer at Publicis Sapient building backend services with Java, Spring Boot and microservices. LeetCode Knight, NIT Raipur graduate."
+    />
+    <meta name="author" content="Omesh Mandavi" />
+    <meta name="theme-color" content="#f4f6f9" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#13161d" media="(prefers-color-scheme: dark)" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Omesh Mandavi — Software Engineer" />
+    <meta
+      property="og:description"
+      content="Backend engineer building Spring Boot microservices. Competitive programmer, LeetCode Knight."
+    />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Apply the saved theme before first paint to avoid a flash -->
+    <script>
+      try {
+        var t = localStorage.getItem('theme')
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t)
+      } catch (e) {}
+    </script>
   </head>
-  <body class="bg-[#1a1a1a] text-[#f8fafc]">
+  <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

@@ -1,28 +1,23 @@
-import React from 'react'
 import Hero from '../components/Hero'
 import About from '../components/About'
-import Skills from '../components/Skills'
+import Experience from '../components/Experience'
 import Projects from '../components/Projects'
-import Work from '../components/Work'
-import Contact from '../components/Contact'
+import CompetitiveProgramming from '../components/CompetitiveProgramming'
+import Skills from '../components/Skills'
 import Certifications from '../components/Certifications'
-import Achievements from '../components/Achievements'
-import CodingProfiles from '../components/CodingProfiles'
+import Contact from '../components/Contact'
 
-const Home = () => {
-  return (
-    <div>
-        <Hero />
-        <About />
-        <Skills />
-        <CodingProfiles />
-        <Projects />
-        <Work />
-        <Certifications />
-        <Achievements />
-        <Contact />
-    </div>
-  )
-}
+const Home = () => (
+  <>
+    <Hero />
+    <About />
+    <Experience />
+    <Projects />
+    <CompetitiveProgramming />
+    <Skills />
+    <Certifications />
+    <Contact />
+  </>
+)
 
 export default Home

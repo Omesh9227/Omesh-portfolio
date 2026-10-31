@@ -1,137 +1,56 @@
-import React, { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { assets } from '../assets/assets'
+import { FiGithub, FiLinkedin } from 'react-icons/fi'
+import { education, person, socials } from '../data/portfolio'
+import { Container } from './Section'
+import TraceCard from './TraceCard'
 
-const Hero = () => {
+const github = socials.find((s) => s.label === 'GitHub')
+const linkedin = socials.find((s) => s.label === 'LinkedIn')
 
-  const items = [
-    "Microservices",
-    "Generative AI",
-    "Full Stack Apps",
-    "System Design",
-    "AWS"
-  ]
+const facts = [
+  ['Currently', `${person.role.replace('Associate Software Development Engineer', 'ASDE')}, ${person.company}`],
+  ['Based in', person.location.replace(', Haryana', '')],
+  ['Studied', education.school.replace('National Institute of Technology', 'NIT')],
+]
 
-  const [currentIndex, setCurrentIndex] = useState(0)
+const Hero = () => (
+  <section id="top" aria-label="Introduction">
+    <Container className="pt-12 pb-16 sm:pt-20 sm:pb-24">
+      <h1 className="text-[clamp(2.5rem,10.5vw,8.75rem)] leading-[0.92] font-bold tracking-[-0.045em] text-ink">
+        {person.name}
+      </h1>
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % items.length)
-    }, 2000)
-
-    return () => clearInterval(interval)
-  }, [])
-
-  return (
-    <motion.div
-      initial={{opacity:0, y:50}}
-      whileInView={{opacity:1, y:0}}
-      transition={{duration: 0.6, ease: 'easeOut'}}
-      viewport={{once: true}}
-      id='home'
-      className='min-h-screen flex items-center pt-20 pb-16 bg-gradient-to-r from-[#1a1a1a] via-[#2d2d2d] to-[#1a1a1a]'
-    >
-      <div className='container mx-auto px-6 flex flex-col md:flex-row items-center justify-between'>
-
-        {/* LEFT CODE CARD */}
-        <div className='md:w-1/2 flex justify-center mb-10 md:mb-0'>
-          <div className='bg-[#0f172a] text-white rounded-2xl shadow-xl p-6 w-full max-w-md'>
-
-            <div className='flex space-x-2 mb-4'>
-              <span className='w-3 h-3 bg-red-500 rounded-full'></span>
-              <span className='w-3 h-3 bg-yellow-400 rounded-full'></span>
-              <span className='w-3 h-3 bg-green-500 rounded-full'></span>
-            </div>
-
-            <pre className='text-sm md:text-base leading-relaxed whitespace-pre-wrap break-words'>
-              <code>
-                <span className='text-gray-400'>const</span>{' '}
-                <span className='text-blue-400'>developer</span> = {'{'}
-                <br />
-
-                &nbsp;&nbsp;<span className='text-gray-400'>name:</span>{' '}
-                <span className='text-green-400'>'Omesh Mandavi'</span>,
-                <br />
-
-                &nbsp;&nbsp;<span className='text-gray-400'>Profession:</span>{' '}
-                <span className='text-green-400'>'Software Engineer'</span>,
-                <br />
-
-                {/* &nbsp;&nbsp;<span className='text-gray-400'>currentlyWorkingOn:</span> [
-                <span className='text-yellow-400'>'Microservices'</span>,{' '}
-                <span className='text-yellow-400'>'Generative AI'</span>,{' '}
-                <span className='text-yellow-400'>'Full Stack Apps'</span>
-                ],
-                <br /> */}
-
-                {/* &nbsp;&nbsp;<span className='text-gray-400'>currentlyWorkingOn:</span> [
-                <br />
-                &nbsp;&nbsp;&nbsp;&nbsp;<span className='text-yellow-400'>'Microservices'</span>,
-                <br />
-                &nbsp;&nbsp;&nbsp;&nbsp;<span className='text-yellow-400'>'Generative AI'</span>,
-                <br />
-                &nbsp;&nbsp;&nbsp;&nbsp;<span className='text-yellow-400'>'Full Stack Apps'</span>
-                <br />
-                &nbsp;&nbsp;],
-                <br /> */}
-
-                &nbsp;&nbsp;<span className='text-gray-400'>currentlyWorkingOn:</span> [
-                <br />
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <span className='text-yellow-400 transition-all duration-500'>
-                  '{items[currentIndex]}'
-                </span>
-                <span className="text-yellow-400 animate-pulse">|</span>
-                <br />
-                &nbsp;&nbsp;],
-                <br />
-
-                {/* &nbsp;&nbsp;<span className='text-gray-400'>learning:</span> [
-                <span className='text-yellow-400'>'System Design'</span>,{' '}
-                <span className='text-yellow-400'>'AWS'</span>
-                ],
-                <br /> */}
-
-                &nbsp;&nbsp;<span className='text-gray-400'>isAvailable:</span>{' '}
-                <span className='text-blue-400'>true</span>
-                <br />
-
-                {'}'}
-              </code>
-            </pre>
-
-          </div>
-        </div>
-
-        {/* RIGHT TEXT */}
-        <div className='md:w-1/2'>
-          <h1 className='text-4xl md:text-6xl font-bold mb-4'>
-            Hi, I'm <span className='text-purple'>Omesh Mandavi</span>
-          </h1>
-
-          <h2 className='text-2xl md:text-4xl font-semibold mb-6 typewriter'>
-            Full Stack Developer
-          </h2>
-
-          <p className='text-lg text-gray-300 mb-8'>
-            I build scalable backend systems and modern web applications with clean, efficient code. 
-            Currently working on cloud-native microservices and exploring opportunities to solve high-impact engineering problems.
+      <div className="mt-10 grid items-start gap-12 sm:mt-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-16">
+        <div>
+          <p className="max-w-[36ch] text-pretty text-[1.35rem] leading-[1.45] tracking-[-0.01em] text-ink sm:text-[1.55rem]">
+            {person.intro}
           </p>
 
-          <div className='flex space-x-4'>
-            <a href="#projects" className='px-6 py-3 bg-purple rounded-lg font-medium hover:bg-purple-700 transition duration-300'>
-              View Work
-            </a>
+          <dl className="mt-8 grid max-w-md gap-2.5 text-[0.95rem]">
+            {facts.map(([k, v]) => (
+              <div key={k} className="grid grid-cols-[6.5rem_1fr] gap-3">
+                <dt className="text-muted">{k}</dt>
+                <dd className="text-ink">{v}</dd>
+              </div>
+            ))}
+          </dl>
 
-            <a href="#contact" className='px-6 py-3 border border-purple rounded-lg font-medium hover:bg-purple/20 transition duration-300'>
-              Contact Me
+          <div className="mt-9 flex flex-wrap gap-3">
+            <a href="#contact" className="btn btn-primary">
+              Get in touch
+            </a>
+            <a href={github.href} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
+              <FiGithub aria-hidden /> GitHub
+            </a>
+            <a href={linkedin.href} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
+              <FiLinkedin aria-hidden /> LinkedIn
             </a>
           </div>
         </div>
 
+        <TraceCard />
       </div>
-    </motion.div>
-  )
-}
+    </Container>
+  </section>
+)
 
 export default Hero
