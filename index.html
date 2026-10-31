@@ -9,7 +9,8 @@
       content="Omesh Mandavi is a software engineer at Publicis Sapient building backend services with Java, Spring Boot and microservices. LeetCode Knight, NIT Raipur graduate."
     />
     <meta name="author" content="Omesh Mandavi" />
-    <meta name="theme-color" content="#030712" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#030712" media="(prefers-color-scheme: dark)" />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Omesh Mandavi — Software Engineer" />
@@ -20,6 +21,14 @@
     <meta name="twitter:card" content="summary" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Apply a saved light/dark choice before first paint (no saved choice = follow the device) -->
+    <script>
+      try {
+        var t = localStorage.getItem('theme')
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t)
+      } catch (e) {}
+    </script>
 
   </head>
   <body>

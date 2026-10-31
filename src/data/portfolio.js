@@ -93,6 +93,25 @@ export const community = [
 
 export const projects = [
   {
+    title: 'E-Commerce Platform',
+    featured: true,
+    status: 'In progress',
+    summary:
+      'An Amazon-style e-commerce backend built the way production teams do it: 16 Spring Boot microservices covering accounts, catalogue, cart, checkout, payments, shipping, reviews, search, recommendations and an admin dashboard.',
+    details:
+      'Spring Cloud Gateway in front, Eureka for service discovery, Config Server for central configuration, JWT auth, and PostgreSQL with full-text search. Built phase by phase on main / develop / feature branches.',
+    tech: ['Java', 'Spring Boot', 'Spring Cloud Gateway', 'Eureka', 'Config Server', 'JWT', 'PostgreSQL', 'REST APIs'],
+    diagram: 'ecommerce',
+    roadmap: [
+      { step: '16 backend services', done: true },
+      { step: 'React storefront and admin panel' },
+      { step: 'Prometheus and Grafana monitoring' },
+      { step: 'Docker, Kubernetes and Jenkins' },
+      { step: 'Deploy to GCP' },
+    ],
+    code: 'https://github.com/Omesh9227/ecommerce-platform',
+  },
+  {
     title: 'DSA Tracker',
     summary:
       'A full-stack app for organising DSA practice. Create topic tables, add problems with links, and track progress with full CRUD.',

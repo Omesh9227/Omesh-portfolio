@@ -70,7 +70,7 @@ const Contact = () => {
         <div className="card grid gap-10 p-6 sm:p-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:gap-14 lg:p-10">
           {/* Form */}
           <div>
-            <h3 className="mb-6 flex items-center gap-2.5 font-code text-lg font-bold text-white">
+            <h3 className="mb-6 flex items-center gap-2.5 font-code text-lg font-bold text-text">
               <FaEnvelope aria-hidden className="text-green" /> Send a Message
             </h3>
             <form ref={form} onSubmit={onSubmit} className="grid gap-5">
@@ -135,7 +135,7 @@ const Contact = () => {
 
           {/* Info */}
           <div className="lg:border-l lg:border-line lg:pl-14">
-            <h3 className="mb-6 font-code text-lg font-bold text-white">Contact Info</h3>
+            <h3 className="mb-6 font-code text-lg font-bold text-text">Contact Info</h3>
             <ul className="space-y-5">
               {info.map(([Icon, label, value, href]) => (
                 <li key={label} className="flex items-start gap-4">
@@ -156,7 +156,7 @@ const Contact = () => {
               ))}
             </ul>
 
-            <h3 className="mt-10 mb-4 font-code text-lg font-bold text-white">Connect with Me</h3>
+            <h3 className="mt-10 mb-4 font-code text-lg font-bold text-text">Connect with Me</h3>
             <ul className="flex flex-wrap gap-2.5">
               {socials.map((s) => {
                 const Icon = socialIcons[s.label]

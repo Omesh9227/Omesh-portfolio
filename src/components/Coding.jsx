@@ -24,7 +24,7 @@ const Coding = () => (
           return (
             <article key={p.platform} className="card p-6 sm:p-7">
               <div className="flex items-center justify-between gap-4">
-                <h3 className="flex items-center gap-3 font-code text-lg font-bold text-white">
+                <h3 className="flex items-center gap-3 font-code text-lg font-bold text-text">
                   <Icon aria-hidden className="text-2xl" style={{ color }} />
                   {p.platform}
                 </h3>

@@ -77,7 +77,7 @@ const Footer = () => {
       <a
         href="#home"
         aria-label="Back to top"
-        className={`fixed right-5 bottom-5 z-40 grid size-11 place-items-center rounded-full border border-green/60 bg-panel text-green shadow-lg shadow-black/50 transition-all duration-200 hover:bg-green hover:text-green-ink ${
+        className={`fixed right-5 bottom-5 z-40 grid size-11 place-items-center rounded-full border border-green/60 bg-panel text-green shadow-lg shadow-[var(--shadow)] transition-all duration-200 hover:bg-green hover:text-green-ink ${
           showTop ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-3 opacity-0'
         }`}
       >

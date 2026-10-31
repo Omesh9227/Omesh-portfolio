@@ -2,11 +2,14 @@ import { useEffect, useState } from 'react'
 import { FaBars, FaCode, FaXmark } from 'react-icons/fa6'
 import { nav, person } from '../data/portfolio'
 import { Container } from './ui'
+import ThemeSwitch from './ThemeSwitch'
+import { readTheme } from '../lib/theme'
 
 const Navbar = () => {
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState('')
   const [scrolled, setScrolled] = useState(false)
+  const [theme, setTheme] = useState(readTheme)
 
   useEffect(() => {
     const sections = ['home', ...nav.map(({ id }) => id)].map((id) => document.getElementById(id)).filter(Boolean)
@@ -38,14 +41,14 @@ const Navbar = () => {
         scrolled || open ? 'border-b border-line bg-bg/90 backdrop-blur-md' : 'border-b border-transparent'
       }`}
     >
-      <Container className="flex h-16 items-center justify-between gap-6">
-        <a href="#home" className="flex items-center gap-2.5 font-code text-[1.05rem] font-bold text-text">
+      <Container className="flex h-16 items-center justify-between gap-4">
+        <a href="#home" className="flex min-w-0 items-center gap-2.5 font-code text-[1.05rem] font-bold whitespace-nowrap text-text">
           <FaCode aria-hidden className="text-xl text-green" />
           {person.name}
         </a>
 
-        <nav aria-label="Primary" className="hidden md:block">
-          <ul className="flex items-center gap-7 text-[0.92rem]">
+        <nav aria-label="Primary" className="ml-auto hidden lg:block">
+          <ul className="flex items-center gap-6 text-[0.92rem] xl:gap-7">
             {nav.map(({ id, label }) => (
               <li key={id}>
                 <a
@@ -68,20 +71,25 @@ const Navbar = () => {
           </ul>
         </nav>
 
-        <button
+        <div className="flex items-center gap-2">
+          <div className="hidden sm:block">
+            <ThemeSwitch theme={theme} onChange={setTheme} />
+          </div>
+          <button
           type="button"
           onClick={() => setOpen((o) => !o)}
           aria-expanded={open}
           aria-controls="mobile-nav"
           aria-label={open ? 'Close menu' : 'Open menu'}
-          className="grid size-10 place-items-center rounded-lg text-text hover:bg-panel-2 md:hidden"
+          className="grid size-10 place-items-center rounded-lg text-text hover:bg-panel-2 lg:hidden"
         >
           {open ? <FaXmark className="size-5" /> : <FaBars className="size-5" />}
         </button>
+        </div>
       </Container>
 
       {open && (
-        <nav id="mobile-nav" aria-label="Mobile" className="border-t border-line md:hidden">
+        <nav id="mobile-nav" aria-label="Mobile" className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-line lg:hidden">
           <Container>
             <ul className="py-2">
               {nav.map(({ id, label }) => (
@@ -99,6 +107,10 @@ const Navbar = () => {
                 </li>
               ))}
             </ul>
+            <div className="flex items-center justify-between border-t border-line py-4 sm:hidden">
+              <span className="text-sm text-muted">Theme</span>
+              <ThemeSwitch theme={theme} onChange={setTheme} />
+            </div>
           </Container>
         </nav>
       )}

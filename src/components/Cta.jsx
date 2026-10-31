@@ -12,7 +12,7 @@ const Cta = () => (
       style={{ background: 'var(--purple)' }}
     />
     <Container className="relative text-center">
-      <h2 id="cta-title" className="font-code text-3xl font-bold text-white sm:text-5xl">
+      <h2 id="cta-title" className="font-code text-3xl font-bold text-text sm:text-5xl">
         Ready to <span className="text-green">Collaborate?</span>
       </h2>
       <span aria-hidden className="mx-auto mt-4 block h-1 w-16 rounded-full bg-green" />

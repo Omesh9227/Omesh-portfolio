@@ -20,7 +20,7 @@ const Experience = () => (
             <article className="card p-6 sm:p-7">
               <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
                 <div>
-                  <h3 className="font-code text-xl font-bold text-white">{job.company}</h3>
+                  <h3 className="font-code text-xl font-bold text-text">{job.company}</h3>
                   <p className="text-sm text-muted">{job.location}</p>
                 </div>
                 <span className="chip border-green/40 font-code text-green">{job.period}</span>

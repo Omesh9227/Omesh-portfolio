@@ -1,17 +1,71 @@
 @import "tailwindcss";
 
-/* ---------- Design tokens: GitHub-dark terminal theme ---------- */
+/* ---------- Design tokens ----------
+   Light values on :root. Dark values apply when the device prefers dark
+   (and the visitor hasn't picked light), when the visitor picks dark,
+   and always inside .force-dark (the terminal and code windows). */
 :root {
-  --bg: #030712;          /* page */
-  --bg-deep: #010409;     /* alternating bands */
-  --panel: #0d1117;       /* cards */
-  --panel-2: #161b22;     /* inputs, chips */
-  --line: #21262d;        /* borders */
+  --bg: #ffffff;          /* page */
+  --bg-deep: #f6f8fa;     /* alternating bands */
+  --panel: #ffffff;       /* cards */
+  --panel-2: #f6f8fa;     /* inputs, chips */
+  --line: #d8dee4;        /* borders */
+  --line-2: #d0d7de;
+  --text: #1f2328;
+  --muted: #59636e;
+  --faint: #6e7781;
+  --green: #1a7f37;       /* accent */
+  --green-strong: #116329;
+  --green-ink: #ffffff;
+  --purple: #8250df;
+  --blue: #0969da;
+  --orange: #bc4c00;
+  --yellow: #9a6700;
+  --red: #cf222e;
+  --note-yellow: #f6e58d;
+  --note-blue: #a5d8ff;
+  --glow: 0.12;
+  --shadow: rgb(31 35 40 / 0.12);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #030712;
+    --bg-deep: #010409;
+    --panel: #0d1117;
+    --panel-2: #161b22;
+    --line: #21262d;
+    --line-2: #30363d;
+    --text: #e6edf3;
+    --muted: #9198a1;
+    --faint: #6e7681;
+    --green: #3fb950;
+    --green-strong: #2ea043;
+    --green-ink: #04140a;
+    --purple: #a371f7;
+    --blue: #58a6ff;
+    --orange: #f0883e;
+    --yellow: #e3b341;
+    --red: #f85149;
+    --glow: 0.22;
+    --shadow: rgb(0 0 0 / 0.6);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"],
+.force-dark {
+  --bg: #030712;
+  --bg-deep: #010409;
+  --panel: #0d1117;
+  --panel-2: #161b22;
+  --line: #21262d;
   --line-2: #30363d;
   --text: #e6edf3;
   --muted: #9198a1;
   --faint: #6e7681;
-  --green: #3fb950;       /* accent */
+  --green: #3fb950;
   --green-strong: #2ea043;
   --green-ink: #04140a;
   --purple: #a371f7;
@@ -19,9 +73,13 @@
   --orange: #f0883e;
   --yellow: #e3b341;
   --red: #f85149;
-  --note-yellow: #f6e58d;
-  --note-blue: #a5d8ff;
+  --glow: 0.22;
+  --shadow: rgb(0 0 0 / 0.6);
   color-scheme: dark;
+}
+
+.force-dark {
+  color: var(--text);
 }
 
 @theme inline {

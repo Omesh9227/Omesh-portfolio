@@ -21,7 +21,7 @@ import {
 const tech = [
   ['Java', FaJava, '#f89820'],
   ['Spring Boot', SiSpringboot, '#6db33f'],
-  ['Apache Kafka', SiApachekafka, '#e6edf3'],
+  ['Apache Kafka', SiApachekafka, 'currentColor'],
   ['PostgreSQL', SiPostgresql, '#699eca'],
   ['AWS', FaAws, '#ff9900'],
   ['Docker', SiDocker, '#2496ed'],
@@ -31,7 +31,7 @@ const tech = [
   ['Jenkins', SiJenkins, '#d33833'],
   ['JUnit', SiJunit5, '#25a162'],
   ['C++', SiCplusplus, '#659ad2'],
-  ['Python', SiPython, '#ffd43b'],
+  ['Python', SiPython, '#3776ab'],
   ['TypeScript', SiTypescript, '#3178c6'],
   ['Node.js', SiNodedotjs, '#5fa04e'],
   ['MySQL', SiMysql, '#4479a1'],
